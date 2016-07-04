@@ -23,9 +23,7 @@ int main(){
                     path.at(j)=0;
                 }else if(j>0){
                     path.at(j)+=path.at(j-1);
-                    
                 }
-            
         }
     }
     cout << path.at(n-1);
