@@ -10,59 +10,41 @@
  * @return {number[][]}
  */
 
-// wrong answer
-// var threeSum = function (nums) {
-//   nums.sort((a, b) => a - b);
-//   const len = nums.length;
-//   const rst = [];
-//   const rstObj = {};
-//   if (nums[len - 1] >= 0) {
-//     for (let i = 0; i < len - 2; i++) {
-//       if (nums[i] > 0) break;
-//       if (i && nums[i] === nums[i - 1]) continue;
-//       for (let j = i + 1; j < len - 1; j++) {
-//         if (j > i + 1 && nums[j] === nums[j - 1]) continue;
-//         const sum1 = nums[i] + nums[j];
-//         if (sum1 > 0) break;
-//         for (let k = j + 1; k < len; k++) {
-//           if (k > j + 1 && nums[k] === nums[k - 1]) continue;
-//           const sum2 = sum1 + nums[k];
-//           if (sum2 > 0) break;
-//           if (sum2 === 0) {
-//             const solution = [nums[i], nums[j], nums[k]];
-//             if (!rstObj[solution.join('')]) {
-//               rst.push(solution);
-//               rstObj[solution.join('')] = true;
-//             }
-//           }
-//         }
-//       }
-//     }
-//   }
-//   return rst;
-// };
-
 var threeSum = function (nums) {
   nums.sort((a, b) => a - b);
   const len = nums.length;
   const rst = [];
-  if (nums[0] <= 0 && nums[len - 1] >= 0 && len >= 3) {
+
+  const last2sum = nums[len - 2] + nums[len - 1];
+  const last3sum = nums[len - 3] + last2sum;
+  if (last3sum === 0) rst.push([nums[len - 3], nums[len - 2], nums[len - 1]]);
+  else if (len >= 3 && last3sum > 0) {
     for (let i = 0; i < len - 2; i++) {
-      if (i && nums[i] === nums[i - 1]) {
+      if (i && nums[i] === nums[i - 1]) continue;
+
+      if (nums[i] + nums[i + 1] + nums[i + 2] > 0) break;
+      if (nums[i] + nums[i + 1] + nums[i + 2] === 0) {
+        rst.push([nums[i], nums[i + 1], nums[i + 2]]);
+        break;
+      }
+      if (nums[i] + last2sum < 0) continue;
+      if (nums[i] + last2sum === 0) {
+        rst.push([nums[i], nums[len - 2], nums[len - 1]]);
         continue;
       }
+
       let start = i + 1,
         end = len - 1;
       while (start < end) {
         const sum = nums[i] + nums[start] + nums[end];
         if (sum > 0) {
-          end--;
+          while (start < end && nums[end] === nums[--end]) {}
         } else if (sum < 0) {
-          start++;
+          while (start < end && nums[start] === nums[++start]) {}
         } else {
           rst.push([nums[i], nums[start], nums[end]]);
-          while (nums[start] === nums[++start]) {}
-          while (nums[end] === nums[--end]) {}
+          while (start < end && nums[start] === nums[++start]) {}
+          while (start < end && nums[end] === nums[--end]) {}
         }
       }
     }
