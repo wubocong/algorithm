@@ -17,8 +17,16 @@
  * @param {number} n
  * @return {ListNode}
  */
-var removeNthFromEnd = function(head, n) {
-
+var removeNthFromEnd = function (head, n) {
+  let first = head,
+    second = head;
+  for (let i = 0; i < n; i++) first = first.next;
+  if (first === null) return head.next;
+  while (first.next) {
+    first = first.next;
+    second = second.next;
+  }
+  second.next = second.next.next;
+  return head;
 };
 // @lc code=end
-
