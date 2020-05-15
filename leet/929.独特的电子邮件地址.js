@@ -1,8 +1,15 @@
+/*
+ * @lc app=leetcode.cn id=929 lang=javascript
+ *
+ * [929] 独特的电子邮件地址
+ */
+
+// @lc code=start
 /**
  * @param {string[]} emails
  * @return {number}
  */
-var numUniqueEmails = function (emails) {
+var numUniqueEmails = function(emails) {
   const unique = {};
   let count = 0;
   for (let i = emails.length - 1; i >= 0; i--) {
@@ -21,3 +28,5 @@ var numUniqueEmails = function (emails) {
   }
   return count;
 };
+// @lc code=end
+

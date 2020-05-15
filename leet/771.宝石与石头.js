@@ -1,9 +1,16 @@
+/*
+ * @lc app=leetcode.cn id=771 lang=javascript
+ *
+ * [771] 宝石与石头
+ */
+
+// @lc code=start
 /**
  * @param {string} J
  * @param {string} S
  * @return {number}
  */
-var numJewelsInStones = function (J, S) {
+var numJewelsInStones = function(J, S) {
   var obj = {};
   var count = 0;
   for (var i = J.length - 1; i >= 0; i--) {
@@ -14,3 +21,5 @@ var numJewelsInStones = function (J, S) {
   }
   return count;
 };
+// @lc code=end
+

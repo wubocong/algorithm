@@ -1,3 +1,10 @@
+/*
+ * @lc app=leetcode.cn id=998 lang=javascript
+ *
+ * [998] 最大二叉树 II
+ */
+
+// @lc code=start
 /**
  * Definition for a binary tree node.
  * function TreeNode(val) {
@@ -10,7 +17,7 @@
  * @param {number} val
  * @return {TreeNode}
  */
-var insertIntoMaxTree = function (root, val) {
+var insertIntoMaxTree = function(root, val) {
   let node = root, prev = {};
   let insert = false;
   while (node) {
@@ -32,3 +39,5 @@ var insertIntoMaxTree = function (root, val) {
   }
   return root;
 };
+// @lc code=end
+

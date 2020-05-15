@@ -1,3 +1,10 @@
+/*
+ * @lc app=leetcode.cn id=654 lang=javascript
+ *
+ * [654] 最大二叉树
+ */
+
+// @lc code=start
 /**
  * Definition for a binary tree node.
  * function TreeNode(val) {
@@ -5,13 +12,11 @@
  *     this.left = this.right = null;
  * }
  */
-
-
 /**
  * @param {number[]} nums
  * @return {TreeNode}
  */
-const constructMaximumBinaryTree = function (nums) {
+var constructMaximumBinaryTree = function(nums) {
   function maxOfArray(arr) {
     let max = Number.MIN_SAFE_INTEGER;
     let index = 0;
@@ -42,3 +47,5 @@ const constructMaximumBinaryTree = function (nums) {
   recursive(tree, nums)
   return tree;
 };
+// @lc code=end
+

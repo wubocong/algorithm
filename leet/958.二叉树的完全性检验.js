@@ -1,3 +1,10 @@
+/*
+ * @lc app=leetcode.cn id=958 lang=javascript
+ *
+ * [958] 二叉树的完全性检验
+ */
+
+// @lc code=start
 /**
  * Definition for a binary tree node.
  * function TreeNode(val) {
@@ -9,7 +16,7 @@
  * @param {TreeNode} root
  * @return {boolean}
  */
-const isCompleteTree = function (root) {
+var isCompleteTree = function(root) {
   const bfsQueue = [root];
   let sign = true;
   let pointer = 0;
@@ -31,3 +38,5 @@ const isCompleteTree = function (root) {
   }
   return true;
 };
+// @lc code=end
+

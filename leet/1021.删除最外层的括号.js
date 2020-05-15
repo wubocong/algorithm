@@ -1,8 +1,15 @@
+/*
+ * @lc app=leetcode.cn id=1021 lang=javascript
+ *
+ * [1021] 删除最外层的括号
+ */
+
+// @lc code=start
 /**
  * @param {string} S
  * @return {string}
  */
-var removeOuterParentheses = function (S) {
+var removeOuterParentheses = function(S) {
   var left = 1, right = 0;
   var l = 1, r = 1;
   var s = '';
@@ -23,3 +30,5 @@ var removeOuterParentheses = function (S) {
   }
   return s;
 };
+// @lc code=end
+

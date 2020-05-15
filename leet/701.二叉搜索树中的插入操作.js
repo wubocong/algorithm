@@ -1,8 +1,16 @@
+/*
+ * @lc app=leetcode.cn id=701 lang=javascript
+ *
+ * [701] 二叉搜索树中的插入操作
+ */
+
+// @lc code=start
 /**
  * Definition for a binary tree node.
- * function TreeNode(val) {
- *     this.val = val;
- *     this.left = this.right = null;
+ * function TreeNode(val, left, right) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.left = (left===undefined ? null : left)
+ *     this.right = (right===undefined ? null : right)
  * }
  */
 /**
@@ -10,7 +18,7 @@
  * @param {number} val
  * @return {TreeNode}
  */
-var insertIntoBST = function (root, val) {
+var insertIntoBST = function(root, val) {
   let node = root, prev = {};
   while (node) {
     prev = node;
@@ -27,3 +35,5 @@ var insertIntoBST = function (root, val) {
   }
   return root;
 };
+// @lc code=end
+

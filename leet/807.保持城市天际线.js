@@ -1,8 +1,14 @@
+/*
+ * @lc app=leetcode.cn id=807 lang=javascript
+ *
+ * [807] 保持城市天际线
+ */
+
+// @lc code=start
 /**
  * @param {number[][]} grid
  * @return {number}
  */
-
 function maxOfArray(arr) {
   var max = 0;
   for (var i = arr.length - 1; i >= 0; i--) {
@@ -30,3 +36,5 @@ var maxIncreaseKeepingSkyline = function (grid) {
   }
   return increase;
 };
+// @lc code=end
+

@@ -1,3 +1,10 @@
+/*
+ * @lc app=leetcode.cn id=938 lang=javascript
+ *
+ * [938] 二叉搜索树的范围和
+ */
+
+// @lc code=start
 /**
  * Definition for a binary tree node.
  * function TreeNode(val) {
@@ -11,7 +18,7 @@
  * @param {number} R
  * @return {number}
  */
-var rangeSumBST = function (root, L, R) {
+var rangeSumBST = function(root, L, R) {
   var sum = 0
   function recursive(node) {
     if (node) {
@@ -31,3 +38,5 @@ var rangeSumBST = function (root, L, R) {
   recursive(root);
   return sum;
 };
+// @lc code=end
+
