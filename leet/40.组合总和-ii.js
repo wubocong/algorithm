@@ -15,15 +15,21 @@ var combinationSum2 = function (candidates, target) {
   const len = candidates.length;
   if (len > 0) {
     candidates.sort((a, b) => a - b);
-    function recursive(index = 0, arr = [], sum = 0) {
+    const combination = [];
+    function recursive(index = 0, sum = 0) {
       for (let i = index + 1; i < len; i++) {
         if (i > index + 1 && candidates[i] === candidates[i - 1]) continue;
-        const newArr = Array.from(arr);
         const newSum = sum + candidates[i];
         if (newSum <= target) {
-          newArr.push(candidates[i]);
-          if (newSum === target) return solution.push(newArr);
-          else recursive(i, newArr, newSum);
+          combination.push(candidates[i]);
+          if (newSum === target) {
+            solution.push([...combination]);
+            combination.pop();
+            return;
+          } else {
+            recursive(i, newSum);
+            combination.pop();
+          }
         } else break;
       }
     }

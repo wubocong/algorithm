@@ -13,12 +13,15 @@ var subsets = function (nums) {
   const solution = [];
   const len = nums.length - 1;
   if (len === -1) return [[]];
-  function recursive(index = 0, arr = []) {
+  const combination = [];
+  function recursive(index = 0) {
     if (index === len) {
-      solution.push(arr, [...arr, nums[index]]);
+      solution.push([...combination], [...combination, nums[index]]);
     } else {
-      recursive(index + 1, arr);
-      recursive(index + 1, [...arr, nums[index]]);
+      recursive(index + 1, combination);
+      combination.push(nums[index]);
+      recursive(index + 1, combination);
+      combination.pop();
     }
   }
   recursive();

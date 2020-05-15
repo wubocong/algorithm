@@ -11,16 +11,19 @@
  */
 var permute = function (nums) {
   const solution = [];
-  if (nums.length > 0) {
-    function recursive(unused = Array.from(nums), arr = []) {
-      const len = unused.length;
-      if (len === 0) solution.push(arr);
+  const len = nums.length;
+  if (len > 0) {
+    const combination = [];
+    function recursive(unusedCount = len) {
+      if (unusedCount === 0) solution.push([...combination]);
       for (let i = 0; i < len; i++) {
-        const newUnused = Array.from(unused);
-        newUnused.splice(i, 1);
-        const newArr = Array.from(arr);
-        newArr.push(unused[i]);
-        recursive(newUnused, newArr);
+        if (nums[i] === false) continue;
+        const tmp = nums[i];
+        nums[i] = false;
+        combination.push(tmp);
+        recursive(unusedCount - 1);
+        nums[i] = tmp;
+        combination.pop();
       }
     }
     recursive();
