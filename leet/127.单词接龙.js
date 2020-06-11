@@ -26,26 +26,22 @@ var ladderLength = function (beginWord, endWord, wordList) {
     else return false;
   }
 
-  function bfs() {
-    let curSet = new Set([beginWord]);
-    let min = 2;
-    while (curSet.size) {
-      const nextSet = new Set();
-      for (let cur of curSet) {
-        if (canTransform(cur, endWord)) return min;
-        for (let nxt of wordSet) {
-          if (canTransform(cur, nxt)) {
-            nextSet.add(nxt);
-            wordSet.delete(nxt);
-          }
+  let curSet = new Set([beginWord]);
+  let min = 2;
+  while (curSet.size) {
+    const nextSet = new Set();
+    for (let cur of curSet) {
+      if (canTransform(cur, endWord)) return min;
+      for (let nxt of wordSet) {
+        if (canTransform(cur, nxt)) {
+          nextSet.add(nxt);
+          wordSet.delete(nxt);
         }
       }
-      curSet = nextSet;
-      min++;
     }
-    return 0;
+    curSet = nextSet;
+    min++;
   }
-  return bfs();
+  return 0;
 };
-ladderLength('hit', 'cog', ['hot', 'dot', 'tog', 'cog']);
 // @lc code=end
