@@ -1,49 +1,37 @@
-/*
- * @lc app=leetcode.cn id=34 lang=javascript
- *
- * [34] 在排序数组中查找元素的第一个和最后一个位置
- */
-
-// @lc code=start
 /**
  * @param {number[]} nums
  * @param {number} target
  * @return {number[]}
  */
-var searchRange = function (nums, target) {
-  const len = nums.length;
-  if (len === 1) return nums[0] === target ? [0, 0] : [-1, -1];
-  function search(pos) {
-    let start, end;
-    if (nums[0] === target) start = 0;
-    else
-      for (let i = pos - 1; i >= 0; i--) {
-        if (nums[i] !== target) {
-          start = i + 1;
-          break;
+var searchRange = function(nums, target) {
+    let left = 0, right = nums.length;
+    let rightSearched = false;
+    let resultRight;
+    while(left < right) {
+        const mid = Math.floor((left + right) / 2);
+        if(nums[mid] === target) {
+            right = mid;
+            if(!rightSearched) {
+                resultRight = searchRight(nums, target, mid);
+                rightSearched = true;
+            }
+            
         }
-      }
-    if (nums[len - 1] === target) end = len - 1;
-    else
-      for (let i = pos + 1; i < len; i++) {
-        if (nums[i] !== target) {
-          end = i - 1;
-          break;
-        }
-      }
-    return [start, end];
-  }
-  let lo = 0;
-  hi = len - 1;
-  while (lo < hi) {
-    const mid = Math.floor((lo + hi) / 2);
-    if (target === nums[mid]) return search(mid);
-    if (target === nums[lo]) return search(lo);
-    if (target === nums[hi]) return search(hi);
-    if (target < nums[mid]) hi = mid - 1;
-    else lo = mid + 1;
-  }
-  return [-1, -1];
+        else if(nums[mid] < target) left = mid + 1;
+        else right = mid;
+    }
+    return nums[left] === target ? [left, resultRight]  : [-1, -1];
+    
 };
 
-// @lc code=end
+function searchRight(nums, target, sLeft){
+    let left = sLeft, right = nums.length;
+    
+    while(left < right) {
+        const mid = Math.floor((left + right) / 2);
+        if(nums[mid] === target) left = mid + 1;
+        else if(nums[mid] < target) left = mid + 1;
+        else right = mid;
+    }
+    return left - 1;
+}
