@@ -8,7 +8,7 @@ var searchRange = function (nums, target) {
     let rightSearched = false;
     let resultRight;
     while (left < right) {
-        const mid = Math.floor(left + (right - left / 2));
+        const mid = Math.floor(left + (right - left) / 2);
         if (nums[mid] === target) {
             right = mid;
             if (!rightSearched) {
@@ -28,7 +28,7 @@ function searchRight(nums, target, sLeft) {
     let left = sLeft, right = nums.length;
 
     while (left < right) {
-        const mid = Math.floor(left + (right - left / 2));
+        const mid = Math.floor(left + (right - left) / 2);
         if (nums[mid] === target) left = mid + 1;
         else if (nums[mid] < target) left = mid + 1;
         else if (nums[mid] > target) right = mid;
