@@ -16,25 +16,31 @@
  * @param {TreeNode} root
  * @return {number[]}
  */
+// var inorderTraversal = function (root) {
+//   const stack = [];
+//   let cur = root;
+//   const traversal = [];
+//   while (cur) {
+//     if (cur.visited) {
+//       cur = stack.pop();
+//     } else if (cur.left && !cur.left.visited) {
+//       stack.push(cur);
+//       cur = cur.left;
+//     } else {
+//       traversal.push(cur.val);
+//       cur.visited = true;
+//       if (cur.right) {
+//         stack.push(cur);
+//         cur = cur.right;
+//       } else cur = stack.pop();
+//     }
+//   }
+//   return traversal;
+// };
 var inorderTraversal = function (root) {
-  const stack = [];
-  let cur = root;
-  const traversal = [];
-  while (cur) {
-    if (cur.visited) {
-      cur = stack.pop();
-    } else if (cur.left && !cur.left.visited) {
-      stack.push(cur);
-      cur = cur.left;
-    } else {
-      traversal.push(cur.val);
-      cur.visited = true;
-      if (cur.right) {
-        stack.push(cur);
-        cur = cur.right;
-      } else cur = stack.pop();
-    }
-  }
-  return traversal;
+  if(!root) return [];
+  const left = root.left ? inorderTraversal(root.left) : [];
+  const right = root.right ? inorderTraversal(root.right) : [];
+  return left.concat([root.val, ...right]);
 };
 // @lc code=end
